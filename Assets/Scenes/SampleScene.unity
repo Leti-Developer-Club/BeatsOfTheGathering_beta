@@ -657,15 +657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c1ae82078b1d248b6a8a220dbe5005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundList:
-  - name: ButtonClick
-    sounds: []
-  - name: BadHit
-    sounds: []
-  - name: GoodHit
-    sounds: []
-  - name: Celebration
-    sounds: []
+  sounds: []
 --- !u!1 &488488301
 GameObject:
   m_ObjectHideFlags: 0
