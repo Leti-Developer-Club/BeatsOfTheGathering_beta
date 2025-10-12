@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ParticleSystem perfectHitParticles;
     [SerializeField] private ParticleSystem celebrationParticles;
     public bool startPlaying;
-    //public BeatScroller beatScroller;
+    public ChartSpawner chartSpawner;
 
     //Score variables
     public int currentScore;
@@ -86,14 +86,14 @@ public class GameManager : MonoBehaviour
 
         //totalNotes = FindObjectsByType<NoteObject>(FindObjectsSortMode.None).Length;
 
-        //Invoke("StartGame", 1f);
+        Invoke("StartGame", 1f);
     }
 
 
     private void StartGame()
     {
         startPlaying = true;
-        //beatScroller.hasStarted = true;
+        chartSpawner.hasStarted = true;
         theMusic.Play();
     }
 
@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
         }
         multiplierText.text = "Multiplier: x" + currentMultiplier;
         //currentScore += scorePerNote * currentMultiplier;
-        scoreText.text = "Score: " + currentScore;
+        scoreText.text = currentScore.ToString();
 
 
         // Play crowd cheer sound

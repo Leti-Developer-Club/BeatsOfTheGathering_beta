@@ -6,6 +6,7 @@ public class ChartSpawner : MonoBehaviour
 {
     [Header("Music")]
     public AudioSource music;
+    public bool hasStarted = false;
     public TextAsset chartFile;   // drag your JSON here
 
     [Header("Prefab & Lanes")]
@@ -47,6 +48,7 @@ public class ChartSpawner : MonoBehaviour
 
     void Update()
     {
+        if(!hasStarted) return;
         if (nextNoteIndex >= chart.notes.Count) return;
 
         double now = AudioSettings.dspTime;
