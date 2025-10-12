@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public int scorePerPerfectNote = 150;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI multiplierText;
+    [SerializeField] private int maxStreak = 0;
 
 
     [SerializeField] private TextMeshProUGUI comboText;
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI normalHitText;
     public TextMeshProUGUI goodHitText;
     public TextMeshProUGUI perfectHitText;
-    public TextMeshProUGUI missedHitText;
+    public TextMeshProUGUI maxStreakText;
     public TextMeshProUGUI rankText;
     public TextMeshProUGUI finalScoreText;
 
@@ -83,8 +84,6 @@ public class GameManager : MonoBehaviour
         currentMultiplier = 1;
         currentScore = 0;
         //scoreText.text = "Score: " + currentScore;
-
-        //totalNotes = FindObjectsByType<NoteObject>(FindObjectsSortMode.None).Length;
 
         Invoke("StartGame", 1f);
     }
@@ -123,12 +122,12 @@ public class GameManager : MonoBehaviour
             if (!theMusic.isPlaying && !resultsScreen.activeInHierarchy)
             {
                 resultsScreen.SetActive(true);
-                normalHitText.text = "Normal Hits: " + normalHits;
-                goodHitText.text = GoodHits.ToString();
-                perfectHitText.text = PerfectHits.ToString();
-                missedHitText.text = "" + MissedHits;
+                //                normalHitText.text = "Normal Hits: " + normalHits;
+                //                goodHitText.text = GoodHits.ToString();
+                //                perfectHitText.text = PerfectHits.ToString();
+                maxStreakText.text = maxStreak.ToString();
 
-                float totalHit = normalHits + GoodHits + PerfectHits;
+                float totalHit = GoodHits + PerfectHits;
                 float percentHit = (totalHit / totalNotes) * 100f;
                 percentHitText.text = percentHit.ToString("F1") + "%";
 
@@ -156,6 +155,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 rankText.text = rankVal;
+
                 finalScoreText.text = currentScore.ToString();
 
             }
@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
     //Score per hit precision methods
     public void NoteHit()
     {
-        
+
         Debug.Log("Hit on time");
         multiplierTracker++;
 
@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
             theMusic.PlayOneShot(crowdCheer, 1f);
         }
 
-        if(comboText.gameObject.activeInHierarchy == false)
+        if (comboText.gameObject.activeInHierarchy == false)
         {
             comboText.gameObject.SetActive(true);
         }
@@ -200,17 +200,17 @@ public class GameManager : MonoBehaviour
         UpdateComboText();
     }
 
-/*
-    public void NormalHit()
-    {
-        currentScore += scorePerNote * currentMultiplier;
-        normalHits++;
-        theMusic.PlayOneShot(normalHitSound, 0.7f);
-        if (celebrationMeter) celebrationMeter.Add(addOnNormal);   // <—
+    /*
+        public void NormalHit()
+        {
+            currentScore += scorePerNote * currentMultiplier;
+            normalHits++;
+            theMusic.PlayOneShot(normalHitSound, 0.7f);
+            if (celebrationMeter) celebrationMeter.Add(addOnNormal);   // <—
 
-        NoteHit();
-    }
-*/
+            NoteHit();
+        }
+    */
     public void GoodHit()
     {
         currentScore += scorePerGoodNote * currentMultiplier;
@@ -239,7 +239,10 @@ public class GameManager : MonoBehaviour
     public void NoteMissed()
     {
         Debug.Log("Missed Note");
-    
+        if (combo > maxStreak)
+        {
+            maxStreak = combo;
+        }
         combo = 0;
         UpdateComboText();
         comboText.gameObject.SetActive(false);
@@ -262,4 +265,8 @@ public class GameManager : MonoBehaviour
         comboText.text = combo.ToString();
     }
 
+    public void CountNotes()
+    {
+        totalNotes++;
+    }
 }

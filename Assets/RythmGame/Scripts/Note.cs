@@ -29,7 +29,9 @@ public class Note : MonoBehaviour, IPointerDownHandler
                     Instantiate(goodHitEffect, transform.position, transform.rotation);
                     GameManager.Instance.GoodHit();
                 }
-                /*
+
+
+                /* To remove later
                 else if (Math.Abs(transform.position.y) > 0.05f)
                 {
                     Debug.Log("Good Hit");
@@ -43,6 +45,7 @@ public class Note : MonoBehaviour, IPointerDownHandler
                     Instantiate(perfectHitEffect, transform.position, transform.rotation);
                     GameManager.Instance.PerfectHit();
                 }
+
             }
 
         }
@@ -50,6 +53,8 @@ public class Note : MonoBehaviour, IPointerDownHandler
 
     private void OnTriggerEnter(Collider other)
     {
+        GameManager.Instance.CountNotes();
+
         canBePressed = true;
         if (other.tag == "Activator")
         {
