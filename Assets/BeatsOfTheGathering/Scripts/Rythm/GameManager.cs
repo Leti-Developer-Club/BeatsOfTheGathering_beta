@@ -84,8 +84,7 @@ public class GameManager : MonoBehaviour
         currentMultiplier = 1;
         currentScore = 0;
         //scoreText.text = "Score: " + currentScore;
-
-        Invoke("StartGame", 1f);
+        StartGame();
     }
 
 
@@ -100,6 +99,10 @@ public class GameManager : MonoBehaviour
     //Manage score and ranking
     private void Update()
     {
+        if (combo > maxStreak)
+        {
+            maxStreak = combo;
+        }
         if (!startPlaying)
         {
             /*
@@ -121,6 +124,7 @@ public class GameManager : MonoBehaviour
 
             if (!theMusic.isPlaying && !resultsScreen.activeInHierarchy)
             {
+
                 resultsScreen.SetActive(true);
                 //                normalHitText.text = "Normal Hits: " + normalHits;
                 //                goodHitText.text = GoodHits.ToString();
@@ -145,7 +149,7 @@ public class GameManager : MonoBehaviour
                             if (percentHit > 85)
                             {
                                 rankVal = "A";
-                                if (percentHit > 95)
+                                if (percentHit >= 95)
                                 {
                                     rankVal = "S";
                                 }
@@ -239,10 +243,7 @@ public class GameManager : MonoBehaviour
     public void NoteMissed()
     {
         Debug.Log("Missed Note");
-        if (combo > maxStreak)
-        {
-            maxStreak = combo;
-        }
+
         combo = 0;
         UpdateComboText();
         comboText.gameObject.SetActive(false);
