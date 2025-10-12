@@ -235,7 +235,7 @@ public class GameManager : MonoBehaviour
         if (celebrationMeter) celebrationMeter.Add(addOnPerfect);  // <—
 
 
-        theMusic.PlayOneShot(crowdCheer, 0.5f);
+        //theMusic.PlayOneShot(crowdCheer, 0.5f);
         theMusic.PlayOneShot(wowSound, 1f);
         NoteHit();
     }

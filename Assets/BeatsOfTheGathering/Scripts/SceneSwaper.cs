@@ -6,4 +6,10 @@ public class SceneSwaper : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex);
     }
+
+    public void ExitGame()
+    {
+            Application.Quit();
+
+    }
 }
