@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +10,6 @@ public class GameManager : MonoBehaviour
     //sfx //
     public AudioSource theMusic;
     [SerializeField] public AudioClip crowdCheer;
-    [SerializeField] private AudioClip normalHitSound;
     [SerializeField] private AudioClip goodHitSound;
     [SerializeField] private AudioClip perfectHitSound;
     [SerializeField] private AudioClip missHitSound;
@@ -29,8 +27,8 @@ public class GameManager : MonoBehaviour
     public int scorePerNote = 100;
     public int scorePerGoodNote = 125;
     public int scorePerPerfectNote = 150;
-    public Text scoreText;
-    public Text multiplierText;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI multiplierText;
 
 
     [SerializeField] private TextMeshProUGUI comboText;
@@ -56,13 +54,13 @@ public class GameManager : MonoBehaviour
     public float MissedHits;
 
     public GameObject resultsScreen;
-    public Text percentHitText;
-    public Text normalHitText;
-    public Text goodHitText;
-    public Text perfectHitText;
-    public Text missedHitText;
-    public Text rankText;
-    public Text finalScoreText;
+    public TextMeshProUGUI percentHitText;
+    public TextMeshProUGUI normalHitText;
+    public TextMeshProUGUI goodHitText;
+    public TextMeshProUGUI perfectHitText;
+    public TextMeshProUGUI missedHitText;
+    public TextMeshProUGUI rankText;
+    public TextMeshProUGUI finalScoreText;
 
 
     private void Awake()
@@ -202,6 +200,7 @@ public class GameManager : MonoBehaviour
         UpdateComboText();
     }
 
+/*
     public void NormalHit()
     {
         currentScore += scorePerNote * currentMultiplier;
@@ -211,7 +210,7 @@ public class GameManager : MonoBehaviour
 
         NoteHit();
     }
-
+*/
     public void GoodHit()
     {
         currentScore += scorePerGoodNote * currentMultiplier;

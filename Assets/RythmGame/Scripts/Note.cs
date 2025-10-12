@@ -27,19 +27,21 @@ public class Note : MonoBehaviour, IPointerDownHandler
                 {
                     Debug.Log("Normal Hit");
                     Instantiate(goodHitEffect, transform.position, transform.rotation);
-                    //GameManager.Instance.NormalHit();
+                    GameManager.Instance.GoodHit();
                 }
+                /*
                 else if (Math.Abs(transform.position.y) > 0.05f)
                 {
                     Debug.Log("Good Hit");
                     Instantiate(goodHitEffect, transform.position, transform.rotation);
-                    //GameManager.Instance.GoodHit();
+                    GameManager.Instance.GoodHit();
                 }
+                */
                 else
                 {
                     Debug.Log("Perfect Hit");
                     Instantiate(perfectHitEffect, transform.position, transform.rotation);
-                    //GameManager.Instance.PerfectHit();
+                    GameManager.Instance.PerfectHit();
                 }
             }
 
@@ -59,8 +61,8 @@ public class Note : MonoBehaviour, IPointerDownHandler
     {
         if (other.tag == "Activator")
         {
-            //Instantiate(missHitEffect, transform.position, transform.rotation);
-            //GameManager.Instance.NoteMissed();
+            Instantiate(missHitEffect, transform.position, transform.rotation);
+            GameManager.Instance.NoteMissed();
             canBePressed = false;
             Debug.Log("Missed");
 
