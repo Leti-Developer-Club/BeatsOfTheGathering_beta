@@ -147,7 +147,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fb936b1ec7f407b49af828ea6cc95984, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: fb936b1ec7f407b49af828ea6cc95984, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1057,6 +1057,90 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2092833991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2092833993}
+  - component: {fileID: 2092833992}
+  m_Layer: 0
+  m_Name: GAME_MANAGER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &2092833992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092833991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e708b9bf9c2de84f87c094cc55248d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theMusic: {fileID: 0}
+  crowdCheer: {fileID: 0}
+  normalHitSound: {fileID: 0}
+  goodHitSound: {fileID: 0}
+  perfectHitSound: {fileID: 0}
+  missHitSound: {fileID: 0}
+  wowSound: {fileID: 0}
+  perfectHitParticles: {fileID: 0}
+  celebrationParticles: {fileID: 0}
+  startPlaying: 0
+  currentScore: 0
+  currentMultiplier: 0
+  multiplierTracker: 0
+  multiplierThresholds: 
+  scorePerNote: 100
+  scorePerGoodNote: 125
+  scorePerPerfectNote: 150
+  scoreText: {fileID: 0}
+  multiplierText: {fileID: 0}
+  comboText: {fileID: 0}
+  combo: 0
+  celebrationMeter: {fileID: 0}
+  addOnNormal: 0.01
+  addOnGood: 0.02
+  addOnPerfect: 0.035
+  addOnMiss: -0.025
+  celebrationReached: 0
+  totalNotes: 0
+  normalHits: 0
+  GoodHits: 0
+  PerfectHits: 0
+  MissedHits: 0
+  resultsScreen: {fileID: 0}
+  percentHitText: {fileID: 0}
+  normalHitText: {fileID: 0}
+  goodHitText: {fileID: 0}
+  perfectHitText: {fileID: 0}
+  missedHitText: {fileID: 0}
+  rankText: {fileID: 0}
+  finalScoreText: {fileID: 0}
+--- !u!4 &2092833993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092833991}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 21.891117, z: 21.802702}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2135512611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1308,3 +1392,4 @@ SceneRoots:
   - {fileID: 7418583278518343517}
   - {fileID: 9200235360321888570}
   - {fileID: 236430432}
+  - {fileID: 2092833993}

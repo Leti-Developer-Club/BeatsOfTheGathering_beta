@@ -7,7 +7,7 @@ public class Note : MonoBehaviour, IPointerDownHandler
     public bool canBePressed = false;
 
     //public KeyCode keyToPress;
-    public GameObject normalHitEffect, goodHitEffect, perfectHitEffect, missHitEffect;
+    public GameObject goodHitEffect, perfectHitEffect, missHitEffect;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -26,19 +26,19 @@ public class Note : MonoBehaviour, IPointerDownHandler
                 if (Math.Abs(transform.position.y) > 0.25f)
                 {
                     Debug.Log("Normal Hit");
-                    //Instantiate(normalHitEffect, transform.position, transform.rotation);
+                    Instantiate(goodHitEffect, transform.position, transform.rotation);
                     //GameManager.Instance.NormalHit();
                 }
                 else if (Math.Abs(transform.position.y) > 0.05f)
                 {
                     Debug.Log("Good Hit");
-                    //Instantiate(goodHitEffect, transform.position, transform.rotation);
+                    Instantiate(goodHitEffect, transform.position, transform.rotation);
                     //GameManager.Instance.GoodHit();
                 }
                 else
                 {
                     Debug.Log("Perfect Hit");
-                    //Instantiate(perfectHitEffect, transform.position, transform.rotation);
+                    Instantiate(perfectHitEffect, transform.position, transform.rotation);
                     //GameManager.Instance.PerfectHit();
                 }
             }
