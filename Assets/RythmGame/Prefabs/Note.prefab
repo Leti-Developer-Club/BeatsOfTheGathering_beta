@@ -124,9 +124,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
-  goodHitEffect: {fileID: 196630580674154669, guid: e9dcc0635f777b541a0ef29d413a4035, type: 3}
-  perfectHitEffect: {fileID: 7820286648334010465, guid: fe5dedba33dd23b488418447813204e4, type: 3}
-  missHitEffect: {fileID: 433894782019052378, guid: edae4ec88ae47a645a4daf4636c809fc, type: 3}
+  goodHitEffect: {fileID: 5340021820919892720, guid: abd11ab9bdaed97448b5f2eaa6b1a5bf, type: 3}
+  perfectHitEffect: {fileID: 471954124924366040, guid: 51c41e75274b9d54d935560604fd9e86, type: 3}
+  missHitEffect: {fileID: 603698290301649770, guid: b24b6adcedae25f4e8c41995afd4f7d5, type: 3}
 --- !u!114 &4078319400482895859
 MonoBehaviour:
   m_ObjectHideFlags: 0

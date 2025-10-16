@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
         if (celebrationReached)
         {
             celebrationParticles.gameObject.SetActive(true);
-            celebrationParticles.Play();
+            //celebrationParticles.Play();
             theMusic.PlayOneShot(crowdCheer, 1f);
         }
 
@@ -230,8 +230,8 @@ public class GameManager : MonoBehaviour
     {
         currentScore += scorePerPerfectNote * currentMultiplier;
         PerfectHits++;
-        Instantiate(perfectHitParticles, transform.position, perfectHitParticles.transform.rotation);
         theMusic.PlayOneShot(perfectHitSound, 0.7f);
+        //theMusic.pitch = Random.Range(0.9f, 1.1f);
         if (celebrationMeter) celebrationMeter.Add(addOnPerfect);  // <—
 
 
