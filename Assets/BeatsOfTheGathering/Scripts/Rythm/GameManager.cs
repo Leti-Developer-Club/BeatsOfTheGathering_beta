@@ -38,8 +38,7 @@ public class GameManager : MonoBehaviour
     //Celebration Meter
     // Celebration meter
     [Header("Celebration Meter")]
-    public CelebrationMeter celebrationMeter;   // drag your meter in the Inspector
-    [Range(0f, 1f)] public float addOnNormal = 0.010f;
+    public CelebrationMeter celebrationMeter;  
     [Range(0f, 1f)] public float addOnGood = 0.020f;
     [Range(0f, 1f)] public float addOnPerfect = 0.035f;
     [Range(-1f, 0f)] public float addOnMiss = -0.025f;
@@ -56,7 +55,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject resultsScreen;
     public TextMeshProUGUI percentHitText;
-    public TextMeshProUGUI normalHitText;
     public TextMeshProUGUI goodHitText;
     public TextMeshProUGUI perfectHitText;
     public TextMeshProUGUI maxStreakText;
@@ -191,7 +189,7 @@ public class GameManager : MonoBehaviour
         // Play crowd cheer sound
         if (celebrationReached)
         {
-            celebrationParticles.gameObject.SetActive(true);
+            //celebrationParticles.gameObject.SetActive(true);
             //celebrationParticles.Play();
             theMusic.PlayOneShot(crowdCheer, 1f);
         }

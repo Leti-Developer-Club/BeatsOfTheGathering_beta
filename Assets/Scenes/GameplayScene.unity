@@ -4779,10 +4779,10 @@ MonoBehaviour:
   comboText: {fileID: 1222067254}
   combo: 0
   celebrationMeter: {fileID: 1541120955}
-  addOnNormal: 0.316
-  addOnGood: 0.553
-  addOnPerfect: 0.836
-  addOnMiss: -0.025
+  addOnNormal: 0
+  addOnGood: 0.054
+  addOnPerfect: 0.16
+  addOnMiss: -0.062
   celebrationReached: 0
   totalNotes: 0
   normalHits: 0
