@@ -126,7 +126,7 @@ MonoBehaviour:
   canBePressed: 0
   goodHitEffect: {fileID: 196630580674154669, guid: e9dcc0635f777b541a0ef29d413a4035, type: 3}
   perfectHitEffect: {fileID: 7820286648334010465, guid: fe5dedba33dd23b488418447813204e4, type: 3}
-  missHitEffect: {fileID: 1432839542982181263, guid: ec6164368d4d2ff458a458cdd00c8955, type: 3}
+  missHitEffect: {fileID: 433894782019052378, guid: edae4ec88ae47a645a4daf4636c809fc, type: 3}
 --- !u!114 &4078319400482895859
 MonoBehaviour:
   m_ObjectHideFlags: 0

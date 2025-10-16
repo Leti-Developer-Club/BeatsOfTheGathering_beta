@@ -26,7 +26,7 @@ public class Note : MonoBehaviour, IPointerDownHandler
                 if (Math.Abs(transform.position.y) > 0.25f)
                 {
                     Debug.Log("Normal Hit");
-                    Instantiate(goodHitEffect, transform.position, transform.rotation);
+                    InstantiateParticle(goodHitEffect);
                     GameManager.Instance.GoodHit();
                 }
 
@@ -42,7 +42,7 @@ public class Note : MonoBehaviour, IPointerDownHandler
                 else
                 {
                     Debug.Log("Perfect Hit");
-                    Instantiate(perfectHitEffect, transform.position, transform.rotation);
+                    InstantiateParticle(perfectHitEffect);
                     GameManager.Instance.PerfectHit();
                 }
 
@@ -66,11 +66,18 @@ public class Note : MonoBehaviour, IPointerDownHandler
     {
         if (other.tag == "Activator")
         {
-            Instantiate(missHitEffect, transform.position, transform.rotation);
+            InstantiateParticle(missHitEffect);
             GameManager.Instance.NoteMissed();
             canBePressed = false;
             Debug.Log("Missed");
 
         }
+    }
+
+//Manages particle instantiation and destruction
+    private void InstantiateParticle(GameObject particle)
+    {
+        GameObject p = Instantiate(particle, transform.position, transform.rotation);
+        Destroy(p, 1f);
     }
 }
