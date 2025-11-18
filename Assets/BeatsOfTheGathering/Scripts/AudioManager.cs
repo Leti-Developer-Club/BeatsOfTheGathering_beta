@@ -36,6 +36,7 @@ public class AudioManager : MonoBehaviour
 
     public static void PlaySound(SoundType sound, float volume = 1.0f)
     {
+        if(GameManager.Instance.IsGameOver) return;
         if (Instance == null || Instance.audioSource == null) return;
 
         switch(sound)

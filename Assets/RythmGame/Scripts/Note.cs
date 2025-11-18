@@ -11,6 +11,7 @@ public class Note : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if(GameManager.Instance.IsGameOver) return;
         if (eventData.button == PointerEventData.InputButton.Left)
         {
 
@@ -64,6 +65,7 @@ public class Note : MonoBehaviour, IPointerDownHandler
 
     private void OnTriggerExit(Collider other)
     {
+        if(GameManager.Instance.IsGameOver) return;
         if (other.tag == "Activator")
         {
             InstantiateParticle(missHitEffect);

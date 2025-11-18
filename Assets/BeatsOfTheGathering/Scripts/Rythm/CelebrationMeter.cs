@@ -3,16 +3,30 @@ using UnityEngine.UI;
 
 public class CelebrationMeter : MonoBehaviour
 {
-    [Range(0f, 1f)] public float value = 0f;
+
+    public static CelebrationMeter Instance;
+    [Range(0f, 1f)] public float value = .5f;
     public ParticleSystem celebrationVFX;
 
     [Header("UI (assign one)")]
     public Slider slider;    // optional
     public Image fillImage;  // optional (uses Image.fillAmount)
-
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Update()
     {
+        if(GameManager.Instance.IsGameOver) return;
         ApplyUI();
 
         if (value >= 1f)

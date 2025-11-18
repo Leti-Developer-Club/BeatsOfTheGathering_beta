@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 
     //sfx //
     public AudioSource theMusic;
+    public AudioSource sfxSource;
+    [SerializeField] private bool isGameOver;
+    public bool IsGameOver { get { return isGameOver; } }
     [SerializeField] public AudioClip crowdCheer;
     [SerializeField] private AudioClip goodHitSound;
     [SerializeField] private AudioClip perfectHitSound;
@@ -97,6 +100,14 @@ public class GameManager : MonoBehaviour
     //Manage score and ranking
     private void Update()
     {
+        if (isGameOver) return;
+
+        if(CelebrationMeter.Instance.value <= 0f && !isGameOver)
+        {
+            isGameOver = true;
+            theMusic.Stop();
+        }
+
         if (combo > maxStreak)
         {
             maxStreak = combo;
@@ -112,55 +123,59 @@ public class GameManager : MonoBehaviour
             }
             */
         }
+
         else
         {
-            if (celebrationReached)
-            {
-                //Instantiate(perfectHitParticles, transform.position, perfectHitParticles.transform.rotation);      
-                //celebrationParticles.Play();  
-            }
 
-            if (!theMusic.isPlaying && !resultsScreen.activeInHierarchy)
-            {
 
-                resultsScreen.SetActive(true);
-                //                normalHitText.text = "Normal Hits: " + normalHits;
-                //                goodHitText.text = GoodHits.ToString();
-                //                perfectHitText.text = PerfectHits.ToString();
-                maxStreakText.text = maxStreak.ToString();
-
-                float totalHit = GoodHits + PerfectHits;
-                float percentHit = (totalHit / totalNotes) * 100f;
-                percentHitText.text = percentHit.ToString("F1") + "%";
-
-                string rankVal = "F";
-
-                if (percentHit > 40)
+                if (celebrationReached)
                 {
-                    rankVal = "D";
-                    if (percentHit > 55)
+                    //Instantiate(perfectHitParticles, transform.position, perfectHitParticles.transform.rotation);      
+                    //celebrationParticles.Play();  
+                }
+
+                if (!theMusic.isPlaying && !resultsScreen.activeInHierarchy)
+                {
+                    sfxSource.gameObject.SetActive(false);
+                    resultsScreen.SetActive(true);
+                    //                normalHitText.text = "Normal Hits: " + normalHits;
+                    //                goodHitText.text = GoodHits.ToString();
+                    //                perfectHitText.text = PerfectHits.ToString();
+                    maxStreakText.text = maxStreak.ToString();
+
+                    float totalHit = GoodHits + PerfectHits;
+                    float percentHit = (totalHit / totalNotes) * 100f;
+                    percentHitText.text = percentHit.ToString("F1") + "%";
+
+                    string rankVal = "F";
+
+                    if (percentHit > 40)
                     {
-                        rankVal = "C";
-                        if (percentHit > 70)
+                        rankVal = "D";
+                        if (percentHit > 55)
                         {
-                            rankVal = "B";
-                            if (percentHit > 85)
+                            rankVal = "C";
+                            if (percentHit > 70)
                             {
-                                rankVal = "A";
-                                if (percentHit >= 95)
+                                rankVal = "B";
+                                if (percentHit > 85)
                                 {
-                                    rankVal = "S";
+                                    rankVal = "A";
+                                    if (percentHit >= 95)
+                                    {
+                                        rankVal = "S";
+                                    }
                                 }
                             }
                         }
                     }
+
+                    rankText.text = rankVal;
+
+                    finalScoreText.text = currentScore.ToString();
+
                 }
 
-                rankText.text = rankVal;
-
-                finalScoreText.text = currentScore.ToString();
-
-            }
         }
     }
 
@@ -168,7 +183,6 @@ public class GameManager : MonoBehaviour
     //Score per hit precision methods
     public void NoteHit()
     {
-
         Debug.Log("Hit on time");
         multiplierTracker++;
 
@@ -191,7 +205,7 @@ public class GameManager : MonoBehaviour
         {
             //celebrationParticles.gameObject.SetActive(true);
             //celebrationParticles.Play();
-            theMusic.PlayOneShot(crowdCheer, 1f);
+            sfxSource.PlayOneShot(crowdCheer, 1f);
         }
 
         if (comboText.gameObject.activeInHierarchy == false)
@@ -217,7 +231,7 @@ public class GameManager : MonoBehaviour
     {
         currentScore += scorePerGoodNote * currentMultiplier;
         GoodHits++;
-        theMusic.PlayOneShot(goodHitSound, 0.7f);
+        sfxSource.PlayOneShot(goodHitSound, 0.7f);
         if (celebrationMeter) celebrationMeter.Add(addOnGood);     // <—
 
         NoteHit();
@@ -228,13 +242,13 @@ public class GameManager : MonoBehaviour
     {
         currentScore += scorePerPerfectNote * currentMultiplier;
         PerfectHits++;
-        theMusic.PlayOneShot(perfectHitSound, 0.7f);
+        sfxSource.PlayOneShot(perfectHitSound, 0.7f);
         //theMusic.pitch = Random.Range(0.9f, 1.1f);
         if (celebrationMeter) celebrationMeter.Add(addOnPerfect);  // <—
 
 
         //theMusic.PlayOneShot(crowdCheer, 0.5f);
-        theMusic.PlayOneShot(wowSound, 1f);
+        sfxSource.PlayOneShot(wowSound, 1f);
         NoteHit();
     }
 
@@ -249,7 +263,7 @@ public class GameManager : MonoBehaviour
         MissedHits++;
         currentMultiplier = 1;
         multiplierTracker = 0;
-        theMusic.PlayOneShot(missHitSound, 0.7f);
+        sfxSource.PlayOneShot(missHitSound, 0.7f);
 
         //Reset celebration meter on miss
         if (celebrationMeter) celebrationMeter.Add(addOnMiss); // <—
@@ -268,4 +282,51 @@ public class GameManager : MonoBehaviour
     {
         totalNotes++;
     }
+
+
+/* Clean Code
+private void Update()
+{
+    if (!startPlaying)
+        return;
+
+    // GAME OVER LOGIC
+    if (CelebrationMeter.Instance.value <= 0f && !isGameOver)
+    {
+        isGameOver = true;
+        theMusic.Stop(); // Stop music immediately
+    }
+
+    // Track max combo
+    if (combo > maxStreak)
+        maxStreak = combo;
+
+    // RESULTS SCREEN
+    if (isGameOver && !resultsScreen.activeInHierarchy)
+    {
+        ShowResults();
+    }
+}
+
+private void ShowResults()
+{
+    resultsScreen.SetActive(true);
+
+    maxStreakText.text = maxStreak.ToString();
+
+    float totalHit = GoodHits + PerfectHits;
+    float percentHit = (totalHit / totalNotes) * 100f;
+    percentHitText.text = percentHit.ToString("F1") + "%";
+
+    string rankVal = "F";
+    if (percentHit > 40) rankVal = "D";
+    if (percentHit > 55) rankVal = "C";
+    if (percentHit > 70) rankVal = "B";
+    if (percentHit > 85) rankVal = "A";
+    if (percentHit >= 95) rankVal = "S";
+
+    rankText.text = rankVal;
+    finalScoreText.text = currentScore.ToString();
+}
+*/
 }

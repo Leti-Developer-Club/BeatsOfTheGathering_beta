@@ -48,6 +48,7 @@ public class ChartSpawner : MonoBehaviour
 
     void Update()
     {
+        if(GameManager.Instance.IsGameOver) return;
         if(!hasStarted) return;
         if (nextNoteIndex >= chart.notes.Count) return;
 
